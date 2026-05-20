@@ -3,1120 +3,986 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ITURA – Premium Tigernut Juice</title>
-  <meta name="description" content="ITURA – Nigeria's finest tigernut juice. Pure, natural, refreshing. Order now on WhatsApp." />
+  <title>ITURA – Premium Tigernut Drinks</title>
+  <meta name="description" content="ITURA – Nigeria's finest tigernut drinks. 7 refreshing varieties, made fresh. Order on WhatsApp." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brown: #5c3317;
-      --amber: #c8860a;
-      --gold: #e8a820;
-      --cream: #fdf6ec;
-      --light: #fff9f2;
-      --dark: #2d1a0a;
-      --green: #3a6b35;
-      --wa: #25D366;
+      --ink:    #1C0A00;
+      --brown:  #5C2D0A;
+      --amber:  #C8731A;
+      --gold:   #E8A820;
+      --cream:  #FDF8F0;
+      --off:    #F5EDE0;
+      --white:  #FFFFFF;
+      --wa:     #25D366;
+      --wa2:    #1AAE52;
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 3px; }
 
-    /* ─── NAV ─────────────────────────────────────────────── */
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: rgba(253, 246, 236, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(200, 134, 10, 0.2);
-      padding: 12px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      transition: background 0.3s, box-shadow 0.3s;
     }
-
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 52px; width: auto; object-fit: contain; }
-
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--brown);
-      font-weight: 500;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
+    nav.scrolled {
+      background: rgba(253,248,240,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(200,115,26,0.15);
     }
-    .nav-links a:hover { color: var(--amber); }
-
-    .nav-cta {
-      background: var(--wa);
-      color: #fff !important;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-weight: 600 !important;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .nav-cta:hover { background: #1ebe5d !important; color: #fff !important; }
-
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 25px; height: 2px; background: var(--brown); border-radius: 2px; transition: 0.3s; }
-
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 76px; left: 0; right: 0;
-        background: var(--cream);
-        flex-direction: column;
-        padding: 20px 5%;
-        gap: 16px;
-        border-bottom: 1px solid rgba(200,134,10,0.2);
-      }
-      .nav-links.open { display: flex; }
-    }
-
-    /* ─── HERO ────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      padding-top: 76px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: linear-gradient(135deg, #2d1a0a 0%, #5c3317 60%, #8b4f1f 100%);
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://i.ibb.co/ns9K5Xmy/Itura.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.35;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 90%;
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(232, 168, 32, 0.2);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      padding: 6px 18px;
-      border-radius: 50px;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span { color: var(--gold); }
-
-    .hero p {
-      color: rgba(255,255,255,0.85);
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 550px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-    .btn-primary {
-      background: var(--wa);
-      color: #fff;
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
-
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.6);
-      color: #fff;
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
-    .hero-scroll svg { opacity: 0.6; }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ─── SECTIONS SHARED ─────────────────────────────────── */
-    section { padding: 90px 5%; }
-
-    .section-label {
-      display: inline-block;
-      background: rgba(200,134,10,0.12);
-      color: var(--amber);
-      padding: 5px 16px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    .section-sub {
-      color: #7a5c3a;
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 580px;
-    }
-
-    /* ─── ABOUT ───────────────────────────────────────────── */
-    #about { background: var(--cream); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .about-img {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(92,51,23,0.25);
-    }
-
-    .about-img img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      display: block;
-    }
-
-    .about-img::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border: 2px solid var(--gold);
-      border-radius: 24px;
-      z-index: -1;
-    }
-
-    .about-text { display: flex; flex-direction: column; gap: 20px; }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 10px;
-    }
-
-    .stat-card {
-      background: #fff;
-      border-radius: 14px;
-      padding: 18px 12px;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(92,51,23,0.08);
-    }
-
-    .stat-card .num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--amber);
-    }
-
-    .stat-card .lbl {
-      font-size: 0.72rem;
-      color: #7a5c3a;
-      margin-top: 4px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-    }
-
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: 36px; }
-    }
-
-    /* ─── PRODUCTS ────────────────────────────────────────── */
-    #products { background: var(--light); }
-
-    .products-header { text-align: center; margin-bottom: 52px; }
-    .products-header .section-sub { margin: 0 auto; }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 6px 24px rgba(92,51,23,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(92,51,23,0.16);
-    }
-
-    .product-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-body { padding: 20px; }
-
-    .product-tag {
-      display: inline-block;
-      background: rgba(200,134,10,0.12);
-      color: var(--amber);
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .product-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-
-    .product-desc {
-      font-size: 0.85rem;
-      color: #7a5c3a;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .product-order {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--wa);
-      color: #fff;
-      padding: 9px 18px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
+    .nav-logo img { height: 56px; width: auto; object-fit: contain; display: block; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--white); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 0.7; }
+    nav.scrolled .nav-links a { color: var(--brown); }
+    .nav-order {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--wa); color: var(--white);
+      padding: 9px 22px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 600; text-decoration: none;
       transition: background 0.2s, transform 0.2s;
     }
-    .product-order:hover { background: #1ebe5d; transform: scale(1.03); }
+    .nav-order:hover { background: var(--wa2); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: background 0.3s; }
+    nav.scrolled .hamburger span { background: var(--brown); }
 
-    /* ─── BENEFITS ────────────────────────────────────────── */
-    #benefits { background: var(--cream); }
+    @media (max-width: 860px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none; position: absolute; top: 72px; left: 0; right: 0;
+        background: var(--cream); flex-direction: column; padding: 20px 5% 24px;
+        gap: 18px; border-bottom: 1px solid rgba(200,115,26,0.15);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { color: var(--brown) !important; font-size: 1rem; }
+      .nav-order { padding: 8px 18px; font-size: 0.8rem; }
+    }
 
-    .benefits-header { text-align: center; margin-bottom: 52px; }
-    .benefits-header .section-sub { margin: 0 auto; }
-
-    .benefits-grid {
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto 60px;
+      grid-template-columns: 55% 45%;
     }
-
-    .benefit-card {
-      background: #fff;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 4px 18px rgba(92,51,23,0.07);
-      transition: transform 0.3s;
+    .hero-left {
+      background: linear-gradient(160deg, #1C0A00 0%, #3D1500 60%, #5C2D0A 100%);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 8% 80px;
+      position: relative; overflow: hidden;
     }
-    .benefit-card:hover { transform: translateY(-5px); }
-
-    .benefit-card img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
+    .hero-left::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8731A' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-
-    .benefit-body { padding: 18px; }
-    .benefit-icon { font-size: 1.8rem; margin-bottom: 8px; }
-    .benefit-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(232,168,32,0.5);
+      color: var(--gold); padding: 6px 16px; border-radius: 50px;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+      width: fit-content; margin-bottom: 28px; position: relative;
     }
-    .benefit-text { font-size: 0.82rem; color: #7a5c3a; line-height: 1.6; }
-
-    /* ─── GALLERY ─────────────────────────────────────────── */
-    #gallery { background: var(--dark); padding: 90px 5%; }
-
-    .gallery-header { text-align: center; margin-bottom: 48px; }
-    .gallery-header .section-title { color: #fff; }
-    .gallery-header .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto; }
-    .gallery-header .section-label { background: rgba(232,168,32,0.2); }
-
-    .gallery-masonry {
-      columns: 3;
-      column-gap: 16px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 16px;
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.1; margin-bottom: 22px;
       position: relative;
     }
-
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.4s;
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      line-height: 1.75; margin-bottom: 40px; max-width: 440px;
+      position: relative;
     }
-
-    .gallery-item:hover img { transform: scale(1.05); }
-
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(45,26,10,0);
-      transition: background 0.3s;
-    }
-    .gallery-item:hover::after { background: rgba(45,26,10,0.3); }
-
-    @media (max-width: 900px) { .gallery-masonry { columns: 2; } }
-    @media (max-width: 560px) { .gallery-masonry { columns: 1; } }
-
-    /* ─── ORDER ───────────────────────────────────────────── */
-    #order {
-      background: linear-gradient(135deg, var(--brown) 0%, #3a1f08 100%);
-      text-align: center;
-      padding: 100px 5%;
-    }
-
-    #order .section-title { color: #fff; max-width: 700px; margin: 0 auto 16px; }
-    #order .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 40px; text-align: center; }
-
-    .order-options {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-
-    .order-option {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 16px;
-      padding: 22px 28px;
-      text-align: center;
-      min-width: 160px;
-      transition: background 0.2s;
-    }
-    .order-option:hover { background: rgba(255,255,255,0.13); }
-    .order-option .o-icon { font-size: 2rem; margin-bottom: 8px; }
-    .order-option .o-name { color: #fff; font-weight: 600; font-size: 0.9rem; }
-    .order-option .o-desc { color: rgba(255,255,255,0.5); font-size: 0.75rem; margin-top: 4px; }
-
-    .wa-big {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--wa);
-      color: #fff;
-      padding: 18px 44px;
-      border-radius: 60px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; position: relative; margin-bottom: 52px; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--wa); color: var(--white);
+      padding: 14px 30px; border-radius: 50px;
+      font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.35);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .wa-big:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.55); }
-
-    .wa-big svg { flex-shrink: 0; }
-
-    /* ─── INGREDIENTS ─────────────────────────────────────── */
-    #ingredients { background: var(--light); }
-
-    .ingredients-header { text-align: center; margin-bottom: 52px; }
-    .ingredients-header .section-sub { margin: 0 auto; }
-
-    .fruits-grid {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .fruit-pill {
-      background: #fff;
-      border: 2px solid rgba(200,134,10,0.2);
-      border-radius: 60px;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--brown);
-      box-shadow: 0 2px 12px rgba(92,51,23,0.07);
+    .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(37,211,102,0.45); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid rgba(255,255,255,0.35); color: var(--white);
+      padding: 14px 28px; border-radius: 50px;
+      font-size: 0.95rem; font-weight: 500; text-decoration: none;
       transition: border-color 0.2s, background 0.2s;
     }
-    .fruit-pill:hover { border-color: var(--amber); background: var(--cream); }
-    .fruit-pill .emoji { font-size: 1.4rem; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
+    .hero-stats { display: flex; gap: 36px; position: relative; }
+    .hstat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .hstat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .hstat-div { width: 1px; background: rgba(255,255,255,0.12); }
 
-    /* ─── TESTIMONIALS ────────────────────────────────────── */
-    #testimonials { background: var(--cream); }
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: #2A0D00;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      opacity: 0.9;
+    }
+    .hero-right-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, #1C0A00 0%, transparent 30%);
+    }
 
-    .testimonials-header { text-align: center; margin-bottom: 48px; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vw; min-height: 260px; }
+      .hero-left { padding: 100px 6% 60px; }
+    }
 
-    .testimonials-grid {
+    /* ── TICKER ── */
+    .ticker { background: var(--amber); overflow: hidden; padding: 13px 0; }
+    .ticker-track { display: flex; width: max-content; animation: tick 25s linear infinite; }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding: 0 28px; white-space: nowrap; }
+    .ticker-dot { color: rgba(255,255,255,0.5); padding: 0 4px; }
+    @keyframes tick { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 100px 5%; }
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--amber); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .sec-label::before { content:''; display:block; width:24px; height:1px; background:var(--amber); }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: var(--ink); line-height: 1.15; }
+    .sec-sub { color: #7A5535; font-size: 1rem; line-height: 1.75; max-width: 560px; margin-top: 14px; }
+    .center { text-align: center; }
+    .center .sec-sub { margin: 14px auto 0; }
+    .center .sec-label { justify-content: center; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; max-width: 1140px; margin: 0 auto; }
+    .about-img-wrap {
+      position: relative; border-radius: 4px; overflow: hidden;
+      box-shadow: 32px 32px 0 var(--off);
+    }
+    .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+    .about-text { display: flex; flex-direction: column; gap: 20px; }
+    .about-text p { color: #6B4020; line-height: 1.8; font-size: 0.975rem; }
+    .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--off); border-radius: 12px; overflow: hidden; margin-top: 8px; }
+    .astat { background: var(--white); padding: 20px 16px; text-align: center; }
+    .astat-n { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--amber); }
+    .astat-l { font-size: 0.72rem; color: #9A6040; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 4px; font-weight: 500; }
+    @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--cream); }
+    .products-hdr { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 60px; }
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
     }
+    @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 760px)  { .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 440px)  { .products-grid { grid-template-columns: 1fr; } }
 
-    .tcard {
-      background: #fff;
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 4px 18px rgba(92,51,23,0.07);
+    .pcard {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(92,45,10,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .pcard:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(92,45,10,0.14); }
+
+    .pcard-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--off);
+      flex-shrink: 0;
+    }
+    .pcard-img-wrap img.bottle {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      transition: transform 0.5s;
+    }
+    .pcard:hover .pcard-img-wrap img.bottle { transform: scale(1.06); }
+
+    .pcard-img-wrap img.flyer {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .pcard:hover .pcard-img-wrap img.flyer { opacity: 1; }
+
+    .pcard-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,10,0,0.7) 0%, transparent 55%);
+      display: flex; align-items: flex-end; padding: 16px;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .pcard:hover .pcard-overlay { opacity: 1; }
+    .pcard-overlay-btn {
+      width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      background: var(--wa); color: var(--white);
+      padding: 11px; border-radius: 10px;
+      font-size: 0.83rem; font-weight: 600; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .pcard-overlay-btn:hover { background: var(--wa2); }
+
+    .pcard-tag {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--amber); color: var(--white);
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
     }
 
-    .tcard-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 12px; }
-    .tcard-text { color: #5c3317; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-    .tcard-author { display: flex; align-items: center; gap: 10px; }
-    .tcard-avatar {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      background: var(--amber);
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
+    .pcard-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .pcard-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+    .pcard-desc { font-size: 0.82rem; color: #7A5535; line-height: 1.6; flex: 1; }
+    .pcard-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      background: var(--wa); color: var(--white);
+      padding: 10px 18px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600; text-decoration: none;
+      transition: background 0.2s; width: 100%;
     }
-    .tcard-name { font-weight: 600; color: var(--dark); font-size: 0.9rem; }
-    .tcard-loc { font-size: 0.75rem; color: #9a7a5a; }
+    .pcard-btn:hover { background: var(--wa2); }
 
-    /* ─── FOOTER ──────────────────────────────────────────── */
-    footer {
-      background: var(--dark);
-      padding: 60px 5% 30px;
-    }
+    /* ── FEATURED FLYERS ── */
+    #flyers { background: var(--ink); padding: 100px 5%; }
+    .flyers-hdr { text-align: center; margin-bottom: 52px; }
+    .flyers-hdr .sec-title { color: var(--white); }
+    .flyers-hdr .sec-sub { color: rgba(255,255,255,0.5); margin: 14px auto 0; }
+    .flyers-hdr .sec-label { color: var(--gold); justify-content: center; }
+    .flyers-hdr .sec-label::before { background: var(--gold); }
 
-    .footer-grid {
+    .flyers-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-      max-width: 1100px;
-      margin: 0 auto 48px;
-    }
-
-    .footer-brand img { height: 60px; margin-bottom: 16px; filter: brightness(1.2); }
-    .footer-brand p { color: rgba(255,255,255,0.55); font-size: 0.87rem; line-height: 1.7; max-width: 320px; }
-
-    .footer-heading { color: var(--gold); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
-
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
-    .footer-links a:hover { color: #fff; }
-
-    .footer-contact { display: flex; flex-direction: column; gap: 12px; }
-    .contact-row { display: flex; align-items: flex-start; gap: 10px; color: rgba(255,255,255,0.6); font-size: 0.87rem; }
-    .contact-row svg { flex-shrink: 0; margin-top: 2px; }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px;
-      text-align: center;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.8rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
       max-width: 1100px;
       margin: 0 auto;
     }
+    @media (max-width: 760px) { .flyers-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+    @media (max-width: 480px) { .flyers-grid { grid-template-columns: 1fr; } }
 
-    @media (max-width: 768px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    .flyer-card {
+      border-radius: 12px; overflow: hidden; cursor: pointer;
+      position: relative;
+    }
+    .flyer-card img {
+      width: 100%; aspect-ratio: 1;
+      object-fit: cover; display: block;
+      transition: transform 0.4s;
+    }
+    .flyer-card:hover img { transform: scale(1.04); }
+    .flyer-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(28,10,0,0); transition: background 0.3s;
+    }
+    .flyer-card:hover::after { background: rgba(28,10,0,0.25); }
+    .flyer-zoom {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .flyer-card:hover .flyer-zoom { opacity: 1; }
+    .flyer-zoom-icon {
+      background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: var(--white); width: 48px; height: 48px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
     }
 
-    /* ─── FLOATING WHATSAPP ───────────────────────────────── */
-    .wa-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 999;
-      background: var(--wa);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
-      text-decoration: none;
+    /* ── BENEFITS ── */
+    #benefits { background: var(--off); }
+    .benefits-hdr { text-align: center; margin-bottom: 52px; }
+    .benefits-hdr .sec-sub { margin: 14px auto 0; }
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 860px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .benefits-grid { grid-template-columns: 1fr; } }
+    .bcard {
+      background: var(--white); border-radius: 16px; padding: 32px 24px;
+      box-shadow: 0 2px 14px rgba(92,45,10,0.06);
+      transition: transform 0.3s;
+    }
+    .bcard:hover { transform: translateY(-4px); }
+    .bcard-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .bcard-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .bcard-text { font-size: 0.85rem; color: #7A5535; line-height: 1.7; }
+
+    /* ── INGREDIENTS ── */
+    #ingredients { background: var(--white); }
+    .ingr-hdr { text-align: center; margin-bottom: 44px; }
+    .ingr-hdr .sec-sub { margin: 14px auto 0; }
+    .pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 900px; margin: 0 auto; }
+    .pill {
+      display: flex; align-items: center; gap: 9px;
+      background: var(--cream); border: 1.5px solid rgba(200,115,26,0.2);
+      padding: 10px 22px; border-radius: 50px;
+      font-size: 0.88rem; font-weight: 500; color: var(--brown);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .pill:hover { border-color: var(--amber); background: var(--off); }
+    .pill .e { font-size: 1.3rem; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--cream); }
+    .testi-hdr { text-align: center; margin-bottom: 52px; }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 760px) { .testi-grid { grid-template-columns: 1fr; } }
+    .tcard {
+      background: var(--white); border-radius: 16px; padding: 32px;
+      box-shadow: 0 2px 16px rgba(92,45,10,0.06);
+    }
+    .tcard-stars { color: var(--gold); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .tcard-text { font-size: 0.9rem; color: var(--brown); line-height: 1.75; font-style: italic; margin-bottom: 20px; }
+    .tcard-author { display: flex; align-items: center; gap: 12px; }
+    .tcard-av {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber), var(--gold));
+      color: var(--white); font-weight: 700; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .tcard-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+    .tcard-loc { font-size: 0.75rem; color: #9A7050; margin-top: 2px; }
+
+    /* ── ORDER CTA ── */
+    #order {
+      background: linear-gradient(160deg, #1C0A00, #3D1500, #5C2D0A);
+      text-align: center; padding: 110px 5%;
+    }
+    #order .sec-label { color: var(--gold); justify-content: center; }
+    #order .sec-label::before { background: var(--gold); }
+    #order .sec-title { color: var(--white); margin: 0 auto; max-width: 660px; }
+    #order .sec-sub { color: rgba(255,255,255,0.6); margin: 14px auto 48px; text-align: center; }
+    .order-options {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px;
+    }
+    .oopt {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 20px 26px; min-width: 140px;
+      transition: background 0.2s;
+    }
+    .oopt:hover { background: rgba(255,255,255,0.12); }
+    .oopt-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .oopt-name { color: var(--white); font-weight: 600; font-size: 0.85rem; }
+    .oopt-desc { color: rgba(255,255,255,0.4); font-size: 0.72rem; margin-top: 3px; }
+    .wa-main {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--wa); color: var(--white);
+      padding: 18px 48px; border-radius: 60px;
+      font-size: 1.1rem; font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 36px rgba(37,211,102,0.4);
       transition: transform 0.2s, box-shadow 0.2s;
-      animation: pulse-wa 3s infinite;
     }
-    .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 30px rgba(37,211,102,0.6); animation: none; }
+    .wa-main:hover { transform: translateY(-3px); box-shadow: 0 14px 48px rgba(37,211,102,0.5); }
 
-    @keyframes pulse-wa {
-      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
-      50% { box-shadow: 0 6px 32px rgba(37,211,102,0.8); }
+    /* ── FOOTER ── */
+    footer { background: #120600; padding: 64px 5% 28px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px;
+      max-width: 1100px; margin: 0 auto 52px;
+    }
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 36px; } }
+    .footer-logo img { height: 64px; width: auto; margin-bottom: 16px; }
+    .footer-logo p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; max-width: 300px; }
+    .footer-heading { color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.86rem; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    .footer-contact { display: flex; flex-direction: column; gap: 13px; }
+    .frow { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.45); font-size: 0.86rem; }
+    .frow a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .frow a:hover { color: rgba(255,255,255,0.9); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px; text-align: center;
+      color: rgba(255,255,255,0.2); font-size: 0.78rem;
+      max-width: 1100px; margin: 0 auto;
     }
 
-    .wa-float-label {
-      position: fixed;
-      bottom: 36px;
-      right: 98px;
-      z-index: 999;
-      background: var(--dark);
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--wa); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: wapulse 3.5s infinite;
     }
-    .wa-float:hover ~ .wa-float-label { opacity: 1; }
+    .wa-float:hover { transform: scale(1.1); animation: none; box-shadow: 0 10px 36px rgba(37,211,102,0.6); }
+    @keyframes wapulse { 0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.5);} 50%{box-shadow:0 6px 36px rgba(37,211,102,0.8);} }
+    .wa-float-tip {
+      position: fixed; bottom: 36px; right: 96px; z-index: 999;
+      background: var(--ink); color: var(--white);
+      padding: 8px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 500;
+      white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .wa-float:hover ~ .wa-float-tip { opacity: 1; }
 
-    /* ─── LIGHTBOX ────────────────────────────────────────── */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(0,0,0,0.92);
-      align-items: center;
-      justify-content: center;
+    /* ── LIGHTBOX ── */
+    .lb {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
     }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 10px;
-      object-fit: contain;
+    .lb.open { display: flex; }
+    .lb img { max-width: 92vw; max-height: 92vh; border-radius: 8px; object-fit: contain; }
+    .lb-close {
+      position: absolute; top: 18px; right: 22px;
+      color: #fff; font-size: 2.4rem; line-height: 1;
+      cursor: pointer; background: none; border: none; font-weight: 300;
     }
-    .lightbox-close {
-      position: absolute;
-      top: 20px; right: 24px;
-      color: #fff;
-      font-size: 2.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      line-height: 1;
-    }
+    .lb-close:hover { opacity: 0.7; }
+
+    /* ── FADE-IN ANIMATION ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── SVG WA ICON ── */
+    .wa-svg { flex-shrink: 0; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <img src="https://i.ibb.co/C55pgGdS/ITURA-LOGO.jpg" alt="ITURA Logo" />
-    </a>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><img src="https://i.ibb.co/tptrtmZz/Chat-GPT-Image-May-20-2026-04-12-13-PM-3.png" alt="ITURA" /></a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#flyers">Gallery</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+  <a href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20order." class="nav-order" target="_blank" rel="noopener">
+    <svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    Order Now
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-badge">100% Natural &bull; Made in Nigeria 🇳🇬</span>
+    <h1>Nigeria's Finest <em>Tigernut</em> Drinks</h1>
+    <p class="hero-sub">ITURA brings you 7 premium, freshly crafted tigernut drink varieties. Pure ingredients, bold flavours, delivered straight to you.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20order.%20Please%20share%20your%20menu." class="btn-wa" target="_blank" rel="noopener">
+        <svg class="wa-svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+        Order on WhatsApp
+      </a>
+      <a href="#products" class="btn-ghost">
+        See All Flavours
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#benefits">Benefits</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#order">Order</a></li>
-      <li>
-        <a href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20order%20tigernut%20juice." class="nav-cta" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-num">7</div>
+        <div class="hstat-lbl">Varieties</div>
+      </div>
+      <div class="hstat-div"></div>
+      <div>
+        <div class="hstat-num">100%</div>
+        <div class="hstat-lbl">Natural</div>
+      </div>
+      <div class="hstat-div"></div>
+      <div>
+        <div class="hstat-num">Fresh</div>
+        <div class="hstat-lbl">Daily Made</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://i.ibb.co/HLbC8g6c/Chat-GPT-Image-May-20-2026-04-21-39-PM-1.png" alt="ITURA Original Tigernut Drink" />
+    <div class="hero-right-overlay"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Original Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Mango Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Zobo Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Oats Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Banana Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Pineapple Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Watermelon Zobo Tigernut</span><span class="ticker-dot">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Original Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Mango Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Zobo Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Oats Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Banana Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Pineapple Tigernut</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Watermelon Zobo Tigernut</span><span class="ticker-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-up">
+      <img src="https://i.ibb.co/MDjp1mVj/Chat-GPT-Image-May-20-2026-04-12-09-PM-1.png" alt="ITURA Mango Tigernut Label" />
+    </div>
+    <div class="about-text fade-up">
+      <div>
+        <span class="sec-label">Our Story</span>
+        <h2 class="sec-title">Crafted with Love from Nigeria's Finest</h2>
+      </div>
+      <p>ITURA was born from a deep passion for pure, natural nutrition. We source only the finest tigernuts and blend them with hand-picked fruits to create drinks that are as wholesome as they are delicious.</p>
+      <p>Every bottle is made fresh — no artificial flavours, no preservatives, no compromise. Just nature's best ingredients, crafted for you.</p>
+      <div class="about-stats">
+        <div class="astat"><div class="astat-n">7</div><div class="astat-l">Varieties</div></div>
+        <div class="astat"><div class="astat-n">0</div><div class="astat-l">Preservatives</div></div>
+        <div class="astat"><div class="astat-n">100%</div><div class="astat-l">Natural</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-hdr fade-up">
+    <span class="sec-label">Our Flavours</span>
+    <h2 class="sec-title">Choose Your Drink</h2>
+    <p class="sec-sub">Hover over any card to preview the flavour. Tap Order to chat us directly on WhatsApp.</p>
+  </div>
+  <div class="products-grid">
+
+    <!-- 1. Original Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/v4bZvtnK/Chat-GPT-Image-May-19-2026-01-45-12-PM-2.png" alt="Original Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/HLbC8g6c/Chat-GPT-Image-May-20-2026-04-21-39-PM-1.png" alt="Original Tigernut Flyer" />
+        <span class="pcard-tag">Bestseller</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Original%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+            Order Now
+          </a>
+        </div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Original Tigernut</div>
+        <div class="pcard-desc">Pure, creamy tigernut — the classic ITURA. Rich in fibre, iron, and healthy fats. Naturally sweet and deeply satisfying.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Original%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
           Order Now
         </a>
-      </li>
-    </ul>
-  </nav>
+      </div>
+    </div>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <span class="hero-badge">100% Natural &bull; Made in Nigeria</span>
-      <h1>Pure <span>Tigernut</span> Juice That Nourishes</h1>
-      <p>ITURA brings you premium, freshly made tigernut juice bursting with nature's goodness. Rich, creamy, and packed with nutrients your body craves.</p>
-      <div class="hero-btns">
-        <a href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20order%20your%20tigernut%20juice.%20Please%20share%20your%20menu." class="btn-primary" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
-          Order on WhatsApp
+    <!-- 2. Mango Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/jqq5f3q/Chat-GPT-Image-May-20-2026-03-58-54-PM-1.png" alt="Mango Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/HTGfkGTR/Chat-GPT-Image-May-20-2026-04-12-10-PM-2.png" alt="Mango Tigernut Flyer" />
+        <span class="pcard-tag">New</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Mango%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+            Order Now
+          </a>
+        </div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Mango Tigernut</div>
+        <div class="pcard-desc">Sun-ripened mango blended with creamy tigernut. Sweet, tropical, and bursting with vitamins A and C.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Mango%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          Order Now
         </a>
-        <a href="#products" class="btn-outline">
-          See Varieties
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+
+    <!-- 3. Zobo Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/FqcS6VCt/Chat-GPT-Image-May-20-2026-03-58-54-PM-2.png" alt="Zobo Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/JWBQVgmn/Chat-GPT-Image-May-20-2026-04-21-40-PM-2.png" alt="Zobo Tigernut Flyer" />
+        <span class="pcard-tag">Fan Pick</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Zobo%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+            Order Now
+          </a>
+        </div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Zobo Tigernut</div>
+        <div class="pcard-desc">Tigernut fused with tart hibiscus (zobo). Gorgeous deep-red colour, rich in antioxidants and vitamin C.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Zobo%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          Order Now
         </a>
       </div>
     </div>
-    <div class="hero-scroll">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg>
-      Scroll
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div class="about-img">
-        <img src="https://i.ibb.co/QFQ2vTxc/Chat-GPT-Image-May-18-2026-11-14-13-PM.png" alt="ITURA Fresh Tigernut Juice Making Process" />
-      </div>
-      <div class="about-text">
-        <span class="section-label">Our Story</span>
-        <h2 class="section-title">Crafted with Love from the Finest Tigernuts</h2>
-        <p class="section-sub">ITURA was born from a passion for pure, natural nutrition. We source the best tigernuts and blend them with hand-picked fruits to create a drink that is as wholesome as it is delicious.</p>
-        <p class="section-sub" style="margin-top:12px;">Every bottle is made fresh, with no artificial flavours, no preservatives — just nature's finest ingredients straight to your door.</p>
-        <div class="about-stats">
-          <div class="stat-card"><div class="num">100%</div><div class="lbl">Natural</div></div>
-          <div class="stat-card"><div class="num">6+</div><div class="lbl">Varieties</div></div>
-          <div class="stat-card"><div class="num">Fresh</div><div class="lbl">Daily Made</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products">
-    <div class="products-header">
-      <span class="section-label">Our Varieties</span>
-      <h2 class="section-title">Choose Your Flavour</h2>
-      <p class="section-sub">From classic to exotic — every ITURA variety is crafted with care. Tap any product to order directly on WhatsApp.</p>
-    </div>
-    <div class="products-grid">
-
-      <div class="product-card">
-        <img class="product-img" src="https://i.ibb.co/v4bZvtnK/Chat-GPT-Image-May-19-2026-01-45-12-PM-2.png" alt="Classic Tigernut Juice" />
-        <div class="product-body">
-          <span class="product-tag">Bestseller</span>
-          <div class="product-name">Classic Tigernut</div>
-          <div class="product-desc">Pure, creamy tigernut juice — the original ITURA. Rich in fibre, iron, and healthy fats. Naturally sweet and satisfying.</div>
-          <a class="product-order" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Classic%20Tigernut%20Juice." target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    <!-- 4. Oats Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/fY3Bzz5c/Chat-GPT-Image-May-20-2026-03-58-55-PM-3.png" alt="Oats Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/fz6VM2BS/Chat-GPT-Image-May-20-2026-04-21-40-PM-3.png" alt="Oats Tigernut Flyer" />
+        <span class="pcard-tag">Filling</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Oats%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
             Order Now
           </a>
         </div>
       </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Oats Tigernut</div>
+        <div class="pcard-desc">Wholesome oats blended with tigernut. Thick, hearty, and packed with slow-release energy — the perfect meal replacement.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Oats%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          Order Now
+        </a>
+      </div>
+    </div>
 
-      <div class="product-card">
-        <img class="product-img" src="https://i.ibb.co/YB6GpC7Y/Chat-GPT-Image-May-19-2026-01-45-12-PM-3.png" alt="Oats Tigernut Drink" />
-        <div class="product-body">
-          <span class="product-tag">Fan Favourite</span>
-          <div class="product-name">Oats Tigernut Drink</div>
-          <div class="product-desc">A hearty, creamy blend of tigernut and wholesome oats. Thick, filling, and loaded with slow-release energy — perfect for breakfast or a power snack.</div>
-          <a class="product-order" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Oats%20Tigernut%20Drink." target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    <!-- 5. Banana Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/V0sfXJ0D/Chat-GPT-Image-May-20-2026-03-58-55-PM-4.png" alt="Banana Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/ZbNLMkh/Chat-GPT-Image-May-20-2026-04-21-41-PM-4.png" alt="Banana Tigernut Flyer" />
+        <span class="pcard-tag">Creamy</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Banana%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
             Order Now
           </a>
         </div>
       </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Banana Tigernut</div>
+        <div class="pcard-desc">Sweet ripe banana meets creamy tigernut. Naturally thick, high in potassium, and deliciously tropical.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Banana%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          Order Now
+        </a>
+      </div>
+    </div>
 
-      <div class="product-card">
-        <img class="product-img" src="https://i.ibb.co/b5V21qXZ/Chat-GPT-Image-May-19-2026-01-45-12-PM-4.png" alt="Banana Tigernut Drink" />
-        <div class="product-body">
-          <span class="product-tag">Tropical</span>
-          <div class="product-name">Banana Tigernut</div>
-          <div class="product-desc">Sweet ripe banana blended with smooth, creamy tigernut. A naturally thick, potassium-packed drink that tastes like a tropical treat.</div>
-          <a class="product-order" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Banana%20Tigernut%20Drink." target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    <!-- 6. Pineapple Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/84TRyJCx/Chat-GPT-Image-May-20-2026-03-58-56-PM-5.png" alt="Pineapple Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/sdkDxMzm/Chat-GPT-Image-May-20-2026-04-21-41-PM-5.png" alt="Pineapple Tigernut Flyer" />
+        <span class="pcard-tag">Refreshing</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Pineapple%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
             Order Now
           </a>
         </div>
       </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Pineapple Tigernut</div>
+        <div class="pcard-desc">Tangy fresh pineapple meets smooth tigernut. Bright, refreshing, and loaded with vitamin C and digestive enzymes.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Pineapple%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.298.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          Order Now
+        </a>
+      </div>
+    </div>
 
-      <div class="product-card">
-        <img class="product-img" src="https://i.ibb.co/sd1QFqzJ/Chat-GPT-Image-May-19-2026-01-45-13-PM-5.png" alt="Pineapple Tigernut Drink" />
-        <div class="product-body">
-          <span class="product-tag">Tropical & Fresh</span>
-          <div class="product-name">Pineapple Tigernut</div>
-          <div class="product-desc">Juicy, tangy pineapple meets the creamy richness of tigernut. Refreshingly bright, full of vitamin C and digestive enzymes.</div>
-          <a class="product-order" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Pineapple%20Tigernut%20Drink." target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    <!-- 7. Watermelon Zobo Tigernut -->
+    <div class="pcard fade-up">
+      <div class="pcard-img-wrap">
+        <img class="bottle" src="https://i.ibb.co/9kCVd7qy/Chat-GPT-Image-May-20-2026-03-58-57-PM-6.png" alt="Watermelon Zobo Tigernut Drink" />
+        <img class="flyer" src="https://i.ibb.co/Vp2JdMYD/Chat-GPT-Image-May-20-2026-04-21-42-PM-6.png" alt="Watermelon Zobo Tigernut Flyer" />
+        <span class="pcard-tag">Bold</span>
+        <div class="pcard-overlay">
+          <a class="pcard-overlay-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Watermelon%20Zobo%20Tigernut%20Drink." target="_blank" rel="noopener">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
             Order Now
           </a>
         </div>
       </div>
-
-      <div class="product-card">
-        <img class="product-img" src="https://i.ibb.co/3mMRTTbR/Chat-GPT-Image-May-19-2026-01-45-13-PM-6.png" alt="Cuates Tigernut Drink" />
-        <div class="product-body">
-          <span class="product-tag">Signature</span>
-          <div class="product-name">Cuates Tigernut Drink</div>
-          <div class="product-desc">ITURA's special Cuates blend — a bold, distinctive tigernut drink crafted for those who want something truly unique. Rich, smooth, and unforgettable.</div>
-          <a class="product-order" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Cuates%20Tigernut%20Drink." target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
-            Order Now
-          </a>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img class="product-img" src="https://i.ibb.co/xSbPTJF5/60dba12a-832a-4371-a443-3e7ce325e8fa.png" alt="Tigernut, Zobo & Watermelon Drink" />
-        <div class="product-body">
-          <span class="product-tag">New Flavour</span>
-          <div class="product-name">Tigernut, Zobo & Watermelon</div>
-          <div class="product-desc">A stunning triple fusion — creamy tigernut, tart hibiscus zobo, and juicy watermelon. Beautifully refreshing with a gorgeous deep-red colour.</div>
-          <a class="product-order" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Tigernut%2C%20Zobo%20and%20Watermelon%20Drink." target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
-            Order Now
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BENEFITS -->
-  <section id="benefits">
-    <div class="benefits-header">
-      <span class="section-label">Why ITURA?</span>
-      <h2 class="section-title">Goodness in Every Sip</h2>
-      <p class="section-sub">Tigernuts are one of nature's most powerful superfoods. Packed with nutrients that support your whole body.</p>
-    </div>
-    <div class="benefits-grid">
-
-      <div class="benefit-card">
-        <img src="https://i.ibb.co/vCJqFKZp/Chat-GPT-Image-May-18-2026-11-20-52-PM-1.png" alt="Rich in Fibre" />
-        <div class="benefit-body">
-          <div class="benefit-icon">🌾</div>
-          <div class="benefit-title">High in Dietary Fibre</div>
-          <div class="benefit-text">Supports gut health, aids digestion, and keeps you full longer. Great for weight management.</div>
-        </div>
-      </div>
-
-      <div class="benefit-card">
-        <img src="https://i.ibb.co/1Jt2sT1Q/Chat-GPT-Image-May-18-2026-11-20-52-PM-2.png" alt="Energy Boost" />
-        <div class="benefit-body">
-          <div class="benefit-icon">⚡</div>
-          <div class="benefit-title">Natural Energy Boost</div>
-          <div class="benefit-text">Rich in natural carbohydrates and healthy fats that give you sustained energy all day — no crash.</div>
-        </div>
-      </div>
-
-      <div class="benefit-card">
-        <img src="https://i.ibb.co/nNG6DXk7/Chat-GPT-Image-May-18-2026-11-20-53-PM-4.png" alt="Rich in Minerals" />
-        <div class="benefit-body">
-          <div class="benefit-icon">💪</div>
-          <div class="benefit-title">Packed with Minerals</div>
-          <div class="benefit-text">Iron, magnesium, zinc, and potassium — essential minerals for strong bones, muscles, and immunity.</div>
-        </div>
-      </div>
-
-      <div class="benefit-card">
-        <img src="https://i.ibb.co/qLqRS1D5/fa399a53-5490-4ff1-9191-53cae8283ed2.png" alt="Dairy Free" />
-        <div class="benefit-body">
-          <div class="benefit-icon">🥛</div>
-          <div class="benefit-title">Dairy-Free & Vegan</div>
-          <div class="benefit-text">A perfect milk alternative for those who are lactose intolerant or following a plant-based lifestyle.</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- INGREDIENTS -->
-  <section id="ingredients">
-    <div class="ingredients-header">
-      <span class="section-label">Ingredients</span>
-      <h2 class="section-title">Fruits We Use</h2>
-      <p class="section-sub">We blend tigernut with the finest natural fruits to create flavours that are both nutritious and delightful.</p>
-    </div>
-    <div class="fruits-grid">
-      <div class="fruit-pill"><span class="emoji">🌰</span> Tigernut (Ofio)</div>
-      <div class="fruit-pill"><span class="emoji">🌾</span> Oats</div>
-      <div class="fruit-pill"><span class="emoji">🍌</span> Banana</div>
-      <div class="fruit-pill"><span class="emoji">🍍</span> Pineapple</div>
-      <div class="fruit-pill"><span class="emoji">🌺</span> Zobo (Hibiscus)</div>
-      <div class="fruit-pill"><span class="emoji">🍉</span> Watermelon</div>
-      <div class="fruit-pill"><span class="emoji">🍋</span> Lemon</div>
-      <div class="fruit-pill"><span class="emoji">🫚</span> Ginger Root</div>
-      <div class="fruit-pill"><span class="emoji">🥥</span> Fresh Coconut</div>
-      <div class="fruit-pill"><span class="emoji">🍓</span> Strawberry</div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="gallery-header">
-      <span class="section-label">Gallery</span>
-      <h2 class="section-title">ITURA in the Wild</h2>
-      <p class="section-sub">Real products, real freshness. Click any image to view full size.</p>
-    </div>
-    <div class="gallery-masonry">
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="https://i.ibb.co/2byw8J5/Chat-GPT-Image-May-18-2026-11-41-51-PM-1.png" alt="ITURA Gallery 1" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="https://i.ibb.co/JjBmwrZH/Chat-GPT-Image-May-18-2026-11-41-52-PM-2.png" alt="ITURA Gallery 2" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="https://i.ibb.co/1fcXQ0N7/Chat-GPT-Image-May-18-2026-11-41-52-PM-3.png" alt="ITURA Gallery 3" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="https://i.ibb.co/jv83Gr0Q/Chat-GPT-Image-May-18-2026-11-41-53-PM-4.png" alt="ITURA Gallery 4" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="https://i.ibb.co/ns9K5Xmy/Itura.jpg" alt="ITURA Brand" />
+      <div class="pcard-body">
+        <div class="pcard-name">Watermelon Zobo Tigernut</div>
+        <div class="pcard-desc">A triple fusion of juicy watermelon, tart zobo hibiscus, and creamy tigernut. Stunning colour, extraordinary flavour.</div>
+        <a class="pcard-btn" href="https://wa.me/2348147571469?text=Hi%20ITURA!%20I%20want%20to%20order%20Watermelon%20Zobo%20Tigernut%20Drink." target="_blank" rel="noopener">
+          <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          Order Now
+        </a>
       </div>
     </div>
-  </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="testimonials-header">
-      <span class="section-label">What Customers Say</span>
-      <h2 class="section-title">Loved by Nigerians</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="tcard">
-        <div class="tcard-stars">★★★★★</div>
-        <div class="tcard-text">"ITURA tigernut juice is the best I have ever tasted. So creamy and natural! I order every week now. Delivery is always fast and fresh."</div>
-        <div class="tcard-author">
-          <div class="tcard-avatar">A</div>
-          <div><div class="tcard-name">Adaeze O.</div><div class="tcard-loc">Lagos, Nigeria</div></div>
-        </div>
-      </div>
-      <div class="tcard">
-        <div class="tcard-stars">★★★★★</div>
-        <div class="tcard-text">"I switched to ITURA for my gym recovery. The ginger blend is fire! Helps me stay energised without any artificial stuff. Highly recommend."</div>
-        <div class="tcard-author">
-          <div class="tcard-avatar">K</div>
-          <div><div class="tcard-name">Kunle B.</div><div class="tcard-loc">Abuja, Nigeria</div></div>
-        </div>
-      </div>
-      <div class="tcard">
-        <div class="tcard-stars">★★★★★</div>
-        <div class="tcard-text">"As a nursing mother, I needed something nutritious and ITURA was recommended to me. The Classic and Oats Tigernut blend is my daily routine now. God bless this brand!"</div>
-        <div class="tcard-author">
-          <div class="tcard-avatar">F</div>
-          <div><div class="tcard-name">Fatimah M.</div><div class="tcard-loc">Kano, Nigeria</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORDER -->
-  <section id="order">
-    <span class="section-label">Order Now</span>
-    <h2 class="section-title">Ready to Order?</h2>
-    <p class="section-sub">Chat with us directly on WhatsApp. We deliver fresh to your location. No minimum order — just great juice.</p>
-    <div class="order-options">
-      <div class="order-option">
-        <div class="o-icon">📦</div>
-        <div class="o-name">Single Bottles</div>
-        <div class="o-desc">Try any variety</div>
-      </div>
-      <div class="order-option">
-        <div class="o-icon">🎁</div>
-        <div class="o-name">Gift Packs</div>
-        <div class="o-desc">For loved ones</div>
-      </div>
-      <div class="order-option">
-        <div class="o-icon">📦</div>
-        <div class="o-name">Bulk Orders</div>
-        <div class="o-desc">Events & wholesale</div>
-      </div>
-      <div class="order-option">
-        <div class="o-icon">🚚</div>
-        <div class="o-name">Home Delivery</div>
-        <div class="o-desc">Fresh to your door</div>
-      </div>
-    </div>
-    <a class="wa-big" href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20place%20an%20order.%20Please%20share%20your%20current%20menu%20and%20prices." target="_blank" rel="noopener">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
-      Chat Us on WhatsApp: 08147571469
-    </a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="https://i.ibb.co/C55pgGdS/ITURA-LOGO.jpg" alt="ITURA Logo" />
-        <p>ITURA — Nigeria's premium tigernut juice. Pure, natural, and crafted with love. Nourishing bodies one bottle at a time.</p>
-      </div>
-      <div>
-        <div class="footer-heading">Quick Links</div>
-        <ul class="footer-links">
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#products">Our Products</a></li>
-          <li><a href="#benefits">Benefits</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#order">Order Now</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Contact Us</div>
-        <div class="footer-contact">
-          <div class="contact-row">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8a820" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            <a href="tel:+2348147571469" style="color:rgba(255,255,255,0.6);text-decoration:none;">08147571469</a>
-          </div>
-          <div class="contact-row">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#e8a820"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
-            <a href="https://wa.me/2348147571469" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.6);text-decoration:none;">WhatsApp Us</a>
-          </div>
-          <div class="contact-row">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8a820" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Nigeria
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 ITURA. All rights reserved. &bull; Made with love in Nigeria 🇳🇬
-    </div>
-  </footer>
-
-  <!-- FLOATING WA BUTTON -->
-  <a class="wa-float" href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20order%20tigernut%20juice." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
-  </a>
-  <div class="wa-float-label">Order on WhatsApp</div>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <img id="lightbox-img" src="" alt="Gallery image" onclick="event.stopPropagation()" />
   </div>
+</section>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('open');
-    }
+<!-- FLYERS SHOWCASE -->
+<section id="flyers">
+  <div class="flyers-hdr fade-up">
+    <span class="sec-label">Our Collection</span>
+    <h2 class="sec-title">The Full Range</h2>
+    <p class="sec-sub">Every ITURA drink has its own identity. Click any flyer to view full size.</p>
+  </div>
+  <div class="flyers-grid">
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/HLbC8g6c/Chat-GPT-Image-May-20-2026-04-21-39-PM-1.png')">
+      <img src="https://i.ibb.co/HLbC8g6c/Chat-GPT-Image-May-20-2026-04-21-39-PM-1.png" alt="Original Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/HTGfkGTR/Chat-GPT-Image-May-20-2026-04-12-10-PM-2.png')">
+      <img src="https://i.ibb.co/HTGfkGTR/Chat-GPT-Image-May-20-2026-04-12-10-PM-2.png" alt="Mango Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/JWBQVgmn/Chat-GPT-Image-May-20-2026-04-21-40-PM-2.png')">
+      <img src="https://i.ibb.co/JWBQVgmn/Chat-GPT-Image-May-20-2026-04-21-40-PM-2.png" alt="Zobo Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/fz6VM2BS/Chat-GPT-Image-May-20-2026-04-21-40-PM-3.png')">
+      <img src="https://i.ibb.co/fz6VM2BS/Chat-GPT-Image-May-20-2026-04-21-40-PM-3.png" alt="Oats Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/ZbNLMkh/Chat-GPT-Image-May-20-2026-04-21-41-PM-4.png')">
+      <img src="https://i.ibb.co/ZbNLMkh/Chat-GPT-Image-May-20-2026-04-21-41-PM-4.png" alt="Banana Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/sdkDxMzm/Chat-GPT-Image-May-20-2026-04-21-41-PM-5.png')">
+      <img src="https://i.ibb.co/sdkDxMzm/Chat-GPT-Image-May-20-2026-04-21-41-PM-5.png" alt="Pineapple Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+    <div class="flyer-card fade-up" onclick="openLb('https://i.ibb.co/Vp2JdMYD/Chat-GPT-Image-May-20-2026-04-21-42-PM-6.png')">
+      <img src="https://i.ibb.co/Vp2JdMYD/Chat-GPT-Image-May-20-2026-04-21-42-PM-6.png" alt="Watermelon Zobo Tigernut Flyer" />
+      <div class="flyer-zoom"><div class="flyer-zoom-icon">⊕</div></div>
+    </div>
+  </div>
+</section>
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('open');
-      });
-    });
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="benefits-hdr fade-up">
+    <span class="sec-label">Why ITURA</span>
+    <h2 class="sec-title">Goodness in Every Sip</h2>
+    <p class="sec-sub">Tigernut is one of nature's most powerful superfoods. Every ITURA drink is built on this incredible ingredient.</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="bcard fade-up">
+      <div class="bcard-icon">🌾</div>
+      <div class="bcard-title">High in Dietary Fibre</div>
+      <div class="bcard-text">Supports gut health, aids digestion, and keeps you full longer. Excellent for weight management.</div>
+    </div>
+    <div class="bcard fade-up">
+      <div class="bcard-icon">⚡</div>
+      <div class="bcard-title">Natural Energy</div>
+      <div class="bcard-text">Natural carbohydrates and healthy fats give sustained energy all day with no artificial crash.</div>
+    </div>
+    <div class="bcard fade-up">
+      <div class="bcard-icon">💪</div>
+      <div class="bcard-title">Mineral-Rich</div>
+      <div class="bcard-text">Iron, magnesium, zinc, and potassium — essential for strong bones, muscles, and immunity.</div>
+    </div>
+    <div class="bcard fade-up">
+      <div class="bcard-icon">🥛</div>
+      <div class="bcard-title">Dairy-Free & Vegan</div>
+      <div class="bcard-text">A perfect milk alternative. Great for those who are lactose intolerant or living a plant-based lifestyle.</div>
+    </div>
+  </div>
+</section>
 
-    function openLightbox(el) {
-      const img = el.querySelector('img');
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
+<!-- INGREDIENTS -->
+<section id="ingredients">
+  <div class="ingr-hdr fade-up">
+    <span class="sec-label">Ingredients</span>
+    <h2 class="sec-title">What Goes In</h2>
+    <p class="sec-sub">We blend tigernut with the finest natural fruits and whole foods — nothing artificial, ever.</p>
+  </div>
+  <div class="pills">
+    <div class="pill"><span class="e">🌰</span> Tigernut (Ofio)</div>
+    <div class="pill"><span class="e">🥭</span> Mango</div>
+    <div class="pill"><span class="e">🌺</span> Zobo (Hibiscus)</div>
+    <div class="pill"><span class="e">🌾</span> Oats</div>
+    <div class="pill"><span class="e">🍌</span> Banana</div>
+    <div class="pill"><span class="e">🍍</span> Pineapple</div>
+    <div class="pill"><span class="e">🍉</span> Watermelon</div>
+    <div class="pill"><span class="e">🍋</span> Lemon</div>
+    <div class="pill"><span class="e">🫚</span> Ginger Root</div>
+    <div class="pill"><span class="e">🥥</span> Coconut</div>
+  </div>
+</section>
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-hdr fade-up">
+    <span class="sec-label">Reviews</span>
+    <h2 class="sec-title" style="text-align:center;">Loved Across Nigeria</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard fade-up">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-text">"ITURA tigernut juice is absolutely the best I have tasted. So creamy and completely natural! I order every week. Delivery is always fresh and on time."</div>
+      <div class="tcard-author">
+        <div class="tcard-av">A</div>
+        <div><div class="tcard-name">Adaeze O.</div><div class="tcard-loc">Lagos, Nigeria</div></div>
+      </div>
+    </div>
+    <div class="tcard fade-up">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-text">"The Mango Tigernut is unreal. I switched from buying yoghurt to ITURA every morning. My energy levels have been amazing. Highly recommend to everyone!"</div>
+      <div class="tcard-author">
+        <div class="tcard-av">K</div>
+        <div><div class="tcard-name">Kunle B.</div><div class="tcard-loc">Abuja, Nigeria</div></div>
+      </div>
+    </div>
+    <div class="tcard fade-up">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-text">"As a nursing mother, ITURA Oats Tigernut has been a lifesaver. Nutritious, filling, and so tasty. My baby even benefits from it. God bless this brand!"</div>
+      <div class="tcard-author">
+        <div class="tcard-av">F</div>
+        <div><div class="tcard-name">Fatimah M.</div><div class="tcard-loc">Kano, Nigeria</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
-    });
+<!-- ORDER CTA -->
+<section id="order">
+  <span class="sec-label">Order Now</span>
+  <h2 class="sec-title">Ready to Order?</h2>
+  <p class="sec-sub">Chat us on WhatsApp — we deliver fresh across Nigeria. No minimum order, just great juice.</p>
+  <div class="order-options">
+    <div class="oopt"><div class="oopt-icon">🍶</div><div class="oopt-name">Single Bottles</div><div class="oopt-desc">Try any variety</div></div>
+    <div class="oopt"><div class="oopt-icon">🎁</div><div class="oopt-name">Gift Packs</div><div class="oopt-desc">For loved ones</div></div>
+    <div class="oopt"><div class="oopt-icon">📦</div><div class="oopt-name">Bulk Orders</div><div class="oopt-desc">Events & wholesale</div></div>
+    <div class="oopt"><div class="oopt-icon">🚚</div><div class="oopt-name">Home Delivery</div><div class="oopt-desc">Fresh to your door</div></div>
+  </div>
+  <a class="wa-main" href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20place%20an%20order.%20Please%20share%20your%20menu%20and%20prices." target="_blank" rel="noopener">
+    <svg class="wa-svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    Chat Us: 08147571469
+  </a>
+</section>
 
-    // Smooth nav highlight on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id;
-      });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
-      });
-    });
-  </script>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="https://i.ibb.co/tptrtmZz/Chat-GPT-Image-May-20-2026-04-12-13-PM-3.png" alt="ITURA" />
+      <p>ITURA — Nigeria's premium tigernut drink brand. Pure, natural, and crafted with love. Nourishing bodies one bottle at a time.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#products">Our Products</a></li>
+        <li><a href="#flyers">Gallery</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#order">Order Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-contact">
+        <div class="frow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8A820" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+2348147571469">08147571469</a>
+        </div>
+        <div class="frow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#E8A820"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          <a href="https://wa.me/2348147571469" target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
+        <div class="frow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8A820" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Nigeria 🇳🇬
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 ITURA. All rights reserved. Made with love in Nigeria.</div>
+</footer>
+
+<!-- FLOATING WA -->
+<a class="wa-float" href="https://wa.me/2348147571469?text=Hello%20ITURA!%20I%20want%20to%20order." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.882l6.197-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.009-1.37l-.36-.213-3.68.965.98-3.595-.234-.369A9.817 9.817 0 012.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+</a>
+<div class="wa-float-tip">Order on WhatsApp</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <button class="lb-close" onclick="closeLb()">&times;</button>
+  <img id="lb-img" src="" alt="Full size" onclick="event.stopPropagation()" />
+</div>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  }));
+
+  // Lightbox
+  function openLb(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
